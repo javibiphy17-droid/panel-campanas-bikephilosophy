@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<!-- saved from url=(0087)file:///Users/franciscojaviergarciajimenez/Downloads/panel-campanas-bikephilosophy.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Campanas — Bikephilosophy</title>
+<link href="./Panel Campanas — Bikephilosophy_files/css2" rel="stylesheet">
+<link href="./Panel Campanas — Bikephilosophy_files/tabler-icons.min.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--g:#8DC63F;--b:#111111;--g-dark:#5a8a1f}
+body{font-family:'Barlow',sans-serif;background:#f0f0f0;min-height:100vh;padding:1rem}
+.container{max-width:780px;margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.1)}
+.hdr{background:var(--b);padding:.875rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.logo-block{display:flex;flex-direction:column;line-height:1.05}
+.logo-line{font-family:'Fraunces',serif;font-weight:900;font-size:20px;letter-spacing:1px}
+.l-white{color:#fff}.l-green{color:var(--g)}
+.hdr-right{text-align:right}
+.hdr-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:#555;letter-spacing:1.5px;text-transform:uppercase}
+.sync-status{font-family:'Barlow Condensed',sans-serif;font-size:10px;margin-top:3px;display:flex;align-items:center;gap:4px;justify-content:flex-end}
+.sync-dot{width:6px;height:6px;border-radius:50%}
+.sync-dot.ok{background:var(--g)}.sync-dot.err{background:#E24B4A}.sync-dot.loading{background:#EF9F27;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;padding:.5rem .875rem;border-bottom:.5px solid rgba(0,0,0,0.1);background:#f5f5f5}
+.tb{padding:5px 11px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.5px;border-radius:8px;border:.5px solid rgba(0,0,0,0.2);background:transparent;color:#666;cursor:pointer}
+.tb.on{background:var(--b);color:#fff;border-color:var(--b)}
+.tb.green{background:var(--g);color:#fff;border-color:var(--g)}
+.view{display:none;padding:.875rem}.view.on{display:block}
+.camp-sel{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:.875rem}
+.cb{padding:4px 9px;font-size:11px;font-family:'Barlow Condensed',sans-serif;font-weight:600;border-radius:8px;border:.5px solid rgba(0,0,0,0.2);background:transparent;color:#666;cursor:pointer}
+.cb.on{background:var(--g);color:#fff;border-color:var(--g)}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:11px;font-weight:600;color:#666;text-transform:uppercase;letter-spacing:1px;margin:.875rem 0 5px;padding-bottom:4px;border-bottom:.5px solid rgba(0,0,0,0.1)}
+.card{background:#fff;border:.5px solid rgba(0,0,0,0.1);border-radius:12px;padding:.75rem .875rem;margin-bottom:8px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px}
+.field-row.three{grid-template-columns:1fr 1fr 1fr}
+.fl{font-size:11px;color:#666;margin-bottom:3px;font-family:'Barlow Condensed',sans-serif;font-weight:500}
+.fi{width:100%;padding:5px 8px;font-size:12px;border-radius:8px;border:.5px solid rgba(0,0,0,0.2);background:#f5f5f5;color:#111;font-family:'Barlow',sans-serif}
+.fi:focus{outline:none;border-color:var(--g)}
+.btn-g{padding:6px 12px;font-size:12px;font-family:'Barlow Condensed',sans-serif;font-weight:600;border-radius:8px;border:none;background:var(--g);color:#fff;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+.btn-g:hover{background:var(--g-dark)}
+.btn-danger{padding:4px 8px;font-size:11px;border-radius:8px;border:none;background:transparent;color:#A32D2D;cursor:pointer}
+.resp-block{background:#fff;border:.5px solid rgba(0,0,0,0.1);border-radius:8px;padding:.75rem;margin-bottom:8px}
+.resp-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.resp-name{font-size:13px;font-weight:600;font-family:'Barlow Condensed',sans-serif}
+.task-cfg{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:.5px solid rgba(0,0,0,0.08)}
+.task-cfg:last-child{border-bottom:none}
+.toggle{width:32px;height:17px;border-radius:9px;border:none;cursor:pointer;position:relative;flex-shrink:0;transition:background .15s}
+.toggle.on{background:var(--g)}.toggle.off{background:#ccc}
+.toggle::after{content:'';position:absolute;width:11px;height:11px;border-radius:50%;background:#fff;top:3px;transition:left .15s}
+.toggle.on::after{left:18px}.toggle.off::after{left:3px}
+.cfg-label{font-size:12px;color:#111;flex:1}
+.cfg-label.dim{color:#999;text-decoration:line-through}
+.date-small{padding:3px 6px;font-size:11px;border-radius:8px;border:.5px solid rgba(0,0,0,0.2);background:#f5f5f5;color:#666;cursor:pointer;font-family:'Barlow',sans-serif}
+.task-card{background:#fff;border:.5px solid rgba(0,0,0,0.1);border-radius:8px;padding:.625rem .75rem;margin-bottom:5px}
+.task-top{display:flex;align-items:flex-start;gap:7px}
+.sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.dp{background:#ccc}.dr{background:#EF9F27}.dd{background:var(--g)}
+.tlabel{font-size:12px;flex:1;line-height:1.4;color:#111}
+.hint{font-size:10px;color:#888;display:block;margin-top:1px}
+.dl-tag{font-size:10px;padding:1px 6px;border-radius:8px;display:inline-flex;align-items:center;gap:3px;margin-top:3px}
+.dt-ok{background:#eaf3de;color:#3B6D11}.dt-soon{background:#faeeda;color:#854F0B}.dt-over{background:#fcebeb;color:#A32D2D}.dt-none{background:#f5f5f5;color:#888}
+.sbts{display:flex;gap:3px;margin-top:6px}
+.sb{flex:1;padding:3px 4px;font-size:10px;font-family:'Barlow Condensed',sans-serif;font-weight:600;border-radius:8px;border:.5px solid rgba(0,0,0,0.15);background:transparent;color:#888;cursor:pointer;text-align:center}
+.sb.sp.on{background:#f1efe8;color:#5F5E5A;border-color:#B4B2A9}
+.sb.sr.on{background:#faeeda;color:#854F0B;border-color:#EF9F27}
+.sb.sd.on{background:#eaf3de;color:#3B6D11;border-color:var(--g)}
+.tnote{width:100%;margin-top:5px;padding:4px 7px;font-size:11px;border-radius:8px;border:.5px solid rgba(0,0,0,0.15);background:#f5f5f5;color:#111;resize:none;font-family:'Barlow',sans-serif}
+.tnote:focus{outline:none;border-color:var(--g)}
+.tmeta{font-size:10px;color:#888;margin-top:3px;font-family:'Barlow Condensed',sans-serif}
+.pbar{background:#eee;border-radius:3px;height:4px;overflow:hidden;margin-top:4px}
+.pb{height:4px;border-radius:3px;transition:width .3s}.pb-g{background:var(--g)}.pb-a{background:#EF9F27}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:7px;margin-bottom:.875rem}
+.sc{background:#f5f5f5;border-radius:8px;padding:.625rem .875rem}
+.sl{font-size:10px;color:#888;margin-bottom:2px;font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+.sv{font-size:18px;font-weight:500;color:#111}
+.notify-btn{width:100%;margin-top:.875rem;padding:9px;border-radius:8px;border:none;background:var(--g);color:#fff;font-size:13px;font-family:'Barlow Condensed',sans-serif;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
+.notify-btn:hover:not(:disabled){background:var(--g-dark)}
+.notify-btn:disabled{opacity:.35;cursor:not-allowed}
+.ceo-camp{background:#fff;border:.5px solid rgba(0,0,0,0.1);border-radius:12px;padding:.75rem .875rem;margin-bottom:7px}
+.badge{font-size:10px;padding:2px 6px;border-radius:8px;font-weight:600;font-family:'Barlow Condensed',sans-serif}
+.bd{background:#eaf3de;color:#3B6D11}.br{background:#faeeda;color:#854F0B}.bp{background:#f5f5f5;color:#888}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(85px,1fr));gap:4px;margin-top:7px}
+.ri{padding:4px 6px;border-radius:8px;border:.5px solid rgba(0,0,0,0.1)}
+.rn{font-size:10px;color:#888;margin-bottom:1px;font-family:'Barlow Condensed',sans-serif}
+.rp{font-size:11px;font-weight:500}
+.dates-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.date-chip{font-size:10px;color:#888;display:flex;align-items:center;gap:3px;font-family:'Barlow Condensed',sans-serif}
+.ficha-tabs{display:flex;gap:4px;margin-bottom:.875rem}
+.ftb{padding:4px 10px;font-size:11px;font-family:'Barlow Condensed',sans-serif;font-weight:600;border-radius:8px;border:.5px solid rgba(0,0,0,0.2);background:transparent;color:#666;cursor:pointer}
+.ftb.on{background:#f5f5f5;color:#111;border-color:#888}
+.prod-link{font-size:11px;color:var(--g);text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:3px 7px;border-radius:8px;border:.5px solid rgba(0,0,0,0.15)}
+.precio-actual{background:#eaf3de;color:#3B6D11;padding:2px 7px;border-radius:8px;font-size:12px;font-weight:600;font-family:'Barlow Condensed',sans-serif}
+.hist-row{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:.5px solid rgba(0,0,0,0.08);font-size:12px}
+.hist-row:last-child{border-bottom:none}
+.empty-state{text-align:center;padding:1.5rem 1rem;color:#888;font-size:13px}
+.camp-name-d{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:600;color:#111}
+.toast{position:fixed;bottom:14px;right:14px;background:var(--b);color:#fff;padding:8px 14px;border-radius:8px;font-size:11px;font-family:'Barlow Condensed',sans-serif;opacity:0;transform:translateY(6px);transition:all .2s;pointer-events:none;z-index:999}
+.toast.show{opacity:1;transform:translateY(0)}
+.role-selector{background:var(--b);padding:.5rem 1.25rem;border-bottom:.5px solid #222}
+.role-label{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:#555;letter-spacing:1px;text-transform:uppercase;margin-bottom:5px}
+.role-btns{display:flex;gap:5px;flex-wrap:wrap}
+.role-btn{padding:4px 10px;font-size:11px;font-family:'Barlow Condensed',sans-serif;font-weight:600;border-radius:6px;border:.5px solid #333;background:transparent;color:#888;cursor:pointer}
+.role-btn.on{background:var(--g);color:#fff;border-color:var(--g)}
+.footer{background:var(--b);padding:.5rem 1.25rem;display:flex;align-items:center;justify-content:space-between}
+.footer-text{font-family:'Barlow Condensed',sans-serif;font-size:10px;color:#444}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="hdr">
+  <div class="logo-block">
+    <span class="logo-line l-white">BIKE</span>
+    <span class="logo-line l-green">PHILO•</span>
+    <span class="logo-line l-green">SOPHY</span>
+  </div>
+  <div class="hdr-right">
+    <div class="hdr-label">Panel Campanas</div>
+    <div class="sync-status">
+      <div class="sync-dot ok" id="syncDot"></div>
+      <span id="syncText" style="color:#555">Sincronizado</span>
+    </div>
+  </div>
+</div>
+<div class="role-selector">
+  <div class="role-label">Ver como:</div>
+  <div class="role-btns" id="roleBtns"><button class="role-btn on" onclick="setRole(&#39;javi&#39;)">Javi (CEO)</button><button class="role-btn" onclick="setRole(&#39;hernan&#39;)">Hernan</button><button class="role-btn" onclick="setRole(&#39;raquel&#39;)">Raquel</button><button class="role-btn" onclick="setRole(&#39;moises&#39;)">Moises</button><button class="role-btn" onclick="setRole(&#39;alejandro&#39;)">Alejandro</button><button class="role-btn" onclick="setRole(&#39;tiendas&#39;)">Tiendas</button></div>
+</div>
+<div class="tabs" id="tabs"><button class="tb on">CEO</button><button class="tb green">+ Nueva</button><button class="tb green">Configurar</button><button class="tb">Ficha</button><button class="tb">Hernan</button><button class="tb">Raquel</button><button class="tb">Moises</button><button class="tb">Alejandro</button><button class="tb">Tiendas</button></div>
+<div id="views"><div class="view on" id="view-ceo"><div class="stat-grid">
+    <div class="sc"><div class="sl">Progreso global</div><div class="sv">0%</div><div class="pbar"><div class="pb pb-g" style="width:0%"></div></div></div>
+    <div class="sc"><div class="sl">Campanas</div><div class="sv">0</div><div style="font-size:10px;color:#888;margin-top:2px">0 completadas</div></div>
+  </div><div class="empty-state">No hay campanas. Crea la primera desde "+ Nueva".</div></div><div class="view" id="view-nueva"><div class="sec-title">Nueva campana</div>
+    <div class="card">
+      <div class="field-row"><div><div class="fl">Nombre *</div><input class="fi" id="nc-name" placeholder="Ej: Specialized Levo 2026"></div>
+      <div><div class="fl">Tipo</div><input class="fi" id="nc-tipo" placeholder="Ej: 022"></div></div>
+      <div class="field-row three">
+        <div><div class="fl">Fecha inicio</div><input class="fi" id="nc-ini" type="date"></div>
+        <div><div class="fl">Deadline tareas</div><input class="fi" id="nc-dl" type="date"></div>
+        <div><div class="fl">Fin campana</div><input class="fi" id="nc-fin" type="date"></div>
+      </div>
+      <button class="btn-g" onclick="crearCampana()"><i class="ti ti-plus"></i> Crear campana</button>
+    </div>
+    <div class="empty-state">Aun no hay campanas.</div></div><div class="view" id="view-cfg"><div class="empty-state">No hay campanas.</div></div><div class="view" id="view-ficha"><div class="empty-state">No hay campanas.</div></div><div class="view" id="view-hernan"><div class="empty-state">No hay campanas.</div></div><div class="view" id="view-raquel"><div class="empty-state">No hay campanas.</div></div><div class="view" id="view-moises"><div class="empty-state">No hay campanas.</div></div><div class="view" id="view-alejandro"><div class="empty-state">No hay campanas.</div></div><div class="view" id="view-tiendas"><div class="empty-state">No hay campanas.</div></div></div>
+<div class="footer">
+  <span class="footer-text">BIKEPHILOSOPHY S.L.</span>
+  <span class="footer-text" id="footerDate">19 de junio de 2026</span>
+</div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const PROXY = 'https://script.google.com/macros/s/AKfycbybIUIOLwU4XwrBNPECwSXNOQZ8GR8C6m-2mz4EaDFB_-OmRA3Q2mS-mHoag7jpcA8S/exec';
+
+async function api(params) {
+  try {
+    const qs = Object.entries(params).map(([k,v])=>`${k}=${encodeURIComponent(v)}`).join('&');
+    const r = await fetch(`${PROXY}?${qs}`);
+    return await r.json();
+  } catch(e) { return {ok:false,error:e.toString()}; }
+}
+
+async function sheetGet(sheet) {
+  const r = await api({action:'get',sheet});
+  return r.ok ? r.values : [];
+}
+
+async function sheetSet(sheet, values) {
+  setSyncStatus('loading','Guardando...');
+  const r = await api({action:'set', sheet, values: JSON.stringify(values)});
+  if(r.ok) setSyncStatus('ok','Guardado');
+  else setSyncStatus('err','Error');
+  return r.ok;
+}
+
+const TASK_DEF={
+  hernan:[
+    {id:'h1',label:'Videos inicio campana',hint:'Objetivo: 5'},
+    {id:'h2',label:'Imagenes inicio campana',hint:'Objetivo: 10'},
+    {id:'h3',label:'Fotos carousel',hint:''},
+    {id:'h4',label:'Videos reels',hint:''},
+    {id:'h5',label:'Fotos historias',hint:''},
+    {id:'h6',label:'Videos historias',hint:''},
+    {id:'h7',label:'Enlace producto en bio',hint:''},
+    {id:'h8',label:'Frase de campana publicada',hint:''},
+    {id:'h9',label:'Video largo YouTube',hint:''},
+    {id:'h10',label:'Short clip YouTube',hint:''},
+    {id:'h11',label:'TikTok video campana',hint:''},
+  ],
+  raquel:[
+    {id:'r1',label:'Campana generica Google Ads',hint:''},
+    {id:'r2',label:'Campana concreta producto',hint:''},
+    {id:'r3',label:'Anuncios YouTube especificos',hint:''},
+    {id:'r4',label:'Remarketing activado',hint:''},
+    {id:'r5',label:'Boton llamada a la accion',hint:''},
+    {id:'r6',label:'Frase de campana en Ads',hint:''},
+    {id:'r7',label:'Posicionamiento SEO',hint:''},
+    {id:'r8',label:'Estrategia backlinks',hint:''},
+    {id:'r9',label:'Foto principal optimizada',hint:''},
+  ],
+  moises:[
+    {id:'m1',label:'Etiqueta oferta en tienda',hint:''},
+    {id:'m2',label:'Colocacion piramide masificacion',hint:''},
+    {id:'m3',label:'Cartel exclusivo producto',hint:''},
+    {id:'m4',label:'Formacion personal producto',hint:''},
+    {id:'m5',label:'Formacion tecnica de venta',hint:''},
+    {id:'m6',label:'Revisar ventas en tiendas',hint:''},
+    {id:'m7',label:'Seguimiento formacion tiendas',hint:''},
+  ],
+  alejandro:[
+    {id:'a1',label:'Fotos producto en web',hint:'Min. 4'},
+    {id:'a2',label:'Fotos nuestras',hint:'Min. 2'},
+    {id:'a3',label:'Descripcion producto',hint:''},
+    {id:'a4',label:'Meter en pagina madre',hint:''},
+    {id:'a5',label:'Producto bien colocado',hint:''},
+    {id:'a6',label:'Enlace YouTube en descripcion',hint:''},
+    {id:'a7',label:'Caracteristicas en cuadrante',hint:''},
+    {id:'a8',label:'Foto principal destacada',hint:''},
+    {id:'a9',label:'Eliminar tallas sin stock',hint:''},
+    {id:'a10',label:'Trabajar resenas',hint:''},
+    {id:'a11',label:'Estados WhatsApp',hint:''},
+    {id:'a12',label:'Campanas WhatsApp',hint:''},
+    {id:'a13',label:'Telegram campana',hint:''},
+    {id:'a14',label:'APP oferta novedades',hint:''},
+    {id:'a15',label:'Descuento especial APP',hint:''},
+  ],
+  tiendas:[
+    {id:'t1',label:'Precio actualizado en tienda',hint:''},
+    {id:'t2',label:'Producto visible y colocado',hint:''},
+    {id:'t3',label:'Formacion recibida',hint:''},
+    {id:'t4',label:'Ventas reportadas',hint:''},
+  ]
+};
+const RL={hernan:'Hernan',raquel:'Raquel',moises:'Moises',alejandro:'Alejandro',tiendas:'Tiendas'};
+const ROLES=[{id:'javi',label:'Javi (CEO)'},{id:'hernan',label:'Hernan'},{id:'raquel',label:'Raquel'},{id:'moises',label:'Moises'},{id:'alejandro',label:'Alejandro'},{id:'tiendas',label:'Tiendas'}];
+
+let DB={camps:[],tasks:{},cfg:{},deadlines:{}};
+let currentRole=localStorage.getItem('bp_role')||'javi';
+let activeTab='ceo';
+let campTab={};
+let fichaTab={};
+
+async function loadAll(){
+  setSyncStatus('loading','Cargando...');
+  try {
+    // Load camps
+    const campsRaw = await sheetGet('Campanas');
+    DB.camps = campsRaw.slice(1).filter(r=>r[0]&&r[0]!=='').map(r=>({
+      id:String(r[0]),name:String(r[1]||''),tipo:String(r[2]||''),
+      fechaInicio:String(r[3]||''),fechaDeadline:String(r[4]||''),fechaFin:String(r[5]||''),
+      productos:safeJ(r[6],'[]'),precios:safeJ(r[7],'[]')
+    }));
+
+    // Load tasks
+    const tasksRaw = await sheetGet('Tareas');
+    DB.tasks={};
+    tasksRaw.slice(1).filter(r=>r[0]).forEach(r=>{
+      DB.tasks[`${r[0]}|${r[1]}|${r[2]}`]={state:String(r[3]||'pending'),note:String(r[4]||''),ts:String(r[5]||'')};
+    });
+
+    // Load config
+    const cfgRaw = await sheetGet('Config');
+    DB.cfg={};DB.deadlines={};
+    cfgRaw.slice(1).filter(r=>r[0]).forEach(r=>{
+      DB.cfg[`${r[0]}|${r[1]}|${r[2]}`]=String(r[3])==='1';
+      if(r[4])DB.deadlines[`${r[0]}|${r[1]}|${r[2]}`]=String(r[4]);
+    });
+
+    setSyncStatus('ok','Sincronizado');
+  } catch(e){ setSyncStatus('err','Error'); }
+  buildUI();
+}
+
+function safeJ(s,d){try{return JSON.parse(s||d);}catch(e){return JSON.parse(d);}}
+
+async function saveCamps(){
+  const hdr=[['ID','Nombre','Tipo','FechaInicio','FechaDeadline','FechaFin','Productos','Precios']];
+  const rows=DB.camps.map(c=>[c.id,c.name,c.tipo,c.fechaInicio,c.fechaDeadline,c.fechaFin,JSON.stringify(c.productos),JSON.stringify(c.precios)]);
+  await sheetSet('Campanas',[...hdr,...rows]);
+}
+
+async function saveTasks(){
+  const hdr=[['CampanaID','Responsable','TareaID','Estado','Nota','Timestamp']];
+  const rows=Object.entries(DB.tasks).map(([k,v])=>{const[cid,resp,tid]=k.split('|');return[cid,resp,tid,v.state,v.note,v.ts];});
+  await sheetSet('Tareas',[...hdr,...rows]);
+}
+
+async function saveCfg(){
+  const hdr=[['CampanaID','Responsable','TareaID','Activa','Deadline']];
+  const rows=[];
+  Object.entries(DB.cfg).forEach(([k,active])=>{
+    const[cid,resp,tid]=k.split('|');
+    rows.push([cid,resp,tid,active?'1':'0',DB.deadlines[k]||'']);
+  });
+  await sheetSet('Config',[...hdr,...rows]);
+}
+
+function isCfgOn(cid,r,t){return DB.cfg[`${cid}|${r}|${t}`]===true}
+function getDL(cid,r,t){return DB.deadlines[`${cid}|${r}|${t}`]||''}
+function getTask(cid,r,t){return DB.tasks[`${cid}|${r}|${t}`]||{state:'pending',note:'',ts:''}}
+function activeTasks(cid,r){return(TASK_DEF[r]||[]).filter(t=>isCfgOn(cid,r,t.id))}
+function calcPct(cid,r){
+  const at=activeTasks(cid,r);if(!at.length)return{pct:0,done:0,prog:0,total:0};
+  const states=at.map(t=>getTask(cid,r,t.id).state);
+  const done=states.filter(x=>x==='done').length;
+  const prog=states.filter(x=>x==='progress').length;
+  return{pct:Math.round(((done+prog*0.5)/at.length)*100),done,prog,total:at.length};
+}
+function calcTotal(cid){
+  const pcts=Object.keys(TASK_DEF).map(r=>calcPct(cid,r).pct);
+  return Math.round(pcts.reduce((a,b)=>a+b,0)/pcts.length);
+}
+function fmtDate(d){if(!d)return'';try{const[y,m,day]=d.split('-');return`${day}/${m}/${y.slice(2)}`;}catch(e){return d;}}
+function dlTag(dl){
+  if(!dl)return`<span class="dl-tag dt-none"><i class="ti ti-calendar"></i>Sin fecha</span>`;
+  const today=new Date();today.setHours(0,0,0,0);
+  const d=new Date(dl+'T00:00:00');const diff=Math.round((d-today)/(1000*60*60*24));
+  if(diff<0)return`<span class="dl-tag dt-over"><i class="ti ti-alert-circle"></i>Vencida ${Math.abs(diff)}d</span>`;
+  if(diff<=3)return`<span class="dl-tag dt-soon"><i class="ti ti-clock"></i>${diff===0?'Hoy':diff===1?'Manana':'En '+diff+'d'}</span>`;
+  return`<span class="dl-tag dt-ok"><i class="ti ti-calendar"></i>${fmtDate(dl)}</span>`;
+}
+function setSyncStatus(t,txt){
+  const d=document.getElementById('syncDot');const s=document.getElementById('syncText');
+  if(d)d.className='sync-dot '+t;if(s)s.textContent=txt;
+}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+
+function buildUI(){
+  document.getElementById('footerDate').textContent=new Date().toLocaleDateString('es-ES',{day:'2-digit',month:'long',year:'numeric'});
+  const rb=document.getElementById('roleBtns');
+  if(rb)rb.innerHTML=ROLES.map(r=>`<button class="role-btn${currentRole===r.id?' on':''}" onclick="setRole('${r.id}')">${r.label}</button>`).join('');
+  const tabsEl=document.getElementById('tabs');
+  const viewsEl=document.getElementById('views');
+  tabsEl.innerHTML='';viewsEl.innerHTML='';
+  let allTabs=currentRole==='javi'?[
+    {id:'ceo',label:'CEO'},{id:'nueva',label:'+ Nueva',green:true},
+    {id:'cfg',label:'Configurar',green:true},{id:'ficha',label:'Ficha'},
+    ...Object.keys(TASK_DEF).map(r=>({id:r,label:RL[r]}))
+  ]:[{id:currentRole,label:RL[currentRole]||currentRole}];
+  if(currentRole!=='javi')activeTab=currentRole;
+  allTabs.forEach(t=>{
+    const btn=document.createElement('button');
+    btn.className='tb'+(activeTab===t.id?' on':t.green?' green':'');
+    btn.textContent=t.label;btn.onclick=()=>{activeTab=t.id;buildUI()};
+    tabsEl.appendChild(btn);
+    const div=document.createElement('div');
+    div.className='view'+(activeTab===t.id?' on':'');
+    div.id='view-'+t.id;viewsEl.appendChild(div);
+  });
+  if(currentRole==='javi'){renderCEO();renderNueva();renderCfg();renderFicha();Object.keys(TASK_DEF).forEach(r=>renderResp(r));}
+  else renderResp(currentRole);
+}
+
+function setRole(r){currentRole=r;localStorage.setItem('bp_role',r);activeTab=r==='javi'?'ceo':r;buildUI();}
+
+function renderCEO(){
+  const el=document.getElementById('view-ceo');if(!el)return;
+  const overall=DB.camps.length?Math.round(DB.camps.map(c=>calcTotal(c.id)).reduce((a,b)=>a+b,0)/DB.camps.length):0;
+  const done=DB.camps.filter(c=>calcTotal(c.id)===100).length;
+  let h=`<div class="stat-grid">
+    <div class="sc"><div class="sl">Progreso global</div><div class="sv">${overall}%</div><div class="pbar"><div class="pb pb-g" style="width:${overall}%"></div></div></div>
+    <div class="sc"><div class="sl">Campanas</div><div class="sv">${DB.camps.length}</div><div style="font-size:10px;color:#888;margin-top:2px">${done} completadas</div></div>
+  </div>`;
+  if(!DB.camps.length)h+=`<div class="empty-state">No hay campanas. Crea la primera desde "+ Nueva".</div>`;
+  DB.camps.forEach(c=>{
+    const pct=calcTotal(c.id);
+    const badge=pct===100?'<span class="badge bd">Completada</span>':pct>0?'<span class="badge br">En curso</span>':'<span class="badge bp">Pendiente</span>';
+    const pa=c.precios&&c.precios.length?c.precios[c.precios.length-1]:null;
+    h+=`<div class="ceo-camp"><div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:5px">
+      <div><div style="display:flex;align-items:center;gap:8px"><span class="camp-name-d">${c.name}</span>${pa?`<span class="precio-actual">${pa.precio}</span>`:''}</div>
+      ${c.tipo?`<div style="font-size:10px;color:#888;font-family:'Barlow Condensed',sans-serif">Tipo ${c.tipo}</div>`:''}
+      <div class="dates-row">${c.fechaInicio?`<span class="date-chip"><i class="ti ti-flag"></i>${fmtDate(c.fechaInicio)}</span>`:''}${c.fechaDeadline?`<span class="date-chip"><i class="ti ti-target"></i>${fmtDate(c.fechaDeadline)}</span>`:''}${c.fechaFin?`<span class="date-chip"><i class="ti ti-checks"></i>${fmtDate(c.fechaFin)}</span>`:''}</div></div>
+      <div style="display:flex;align-items:center;gap:5px">${badge}<span style="font-size:12px;font-weight:500">${pct}%</span></div></div>
+      <div class="pbar" style="margin-bottom:7px"><div class="pb pb-g" style="width:${pct}%"></div></div>
+      <div class="rgrid">`;
+    Object.keys(TASK_DEF).forEach(r=>{
+      const{pct:rp,total:rt}=calcPct(c.id,r);
+      const col=rp===100?'#3B6D11':rp>0?'#854F0B':'#888';
+      h+=`<div class="ri"><div class="rn">${RL[r]}</div><div class="rp" style="color:${col}">${rt>0?rp+'%':'--'}</div></div>`;
+    });
+    h+=`</div></div>`;
+  });
+  el.innerHTML=h;
+}
+
+function renderNueva(){
+  const el=document.getElementById('view-nueva');if(!el)return;
+  el.innerHTML=`<div class="sec-title">Nueva campana</div>
+    <div class="card">
+      <div class="field-row"><div><div class="fl">Nombre *</div><input class="fi" id="nc-name" placeholder="Ej: Specialized Levo 2026"></div>
+      <div><div class="fl">Tipo</div><input class="fi" id="nc-tipo" placeholder="Ej: 022"></div></div>
+      <div class="field-row three">
+        <div><div class="fl">Fecha inicio</div><input class="fi" id="nc-ini" type="date"></div>
+        <div><div class="fl">Deadline tareas</div><input class="fi" id="nc-dl" type="date"></div>
+        <div><div class="fl">Fin campana</div><input class="fi" id="nc-fin" type="date"></div>
+      </div>
+      <button class="btn-g" onclick="crearCampana()"><i class="ti ti-plus"></i> Crear campana</button>
+    </div>
+    ${DB.camps.length?'<div class="sec-title" style="margin-top:1rem">Campanas existentes</div>'+DB.camps.map(c=>`
+    <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:8px;padding:.625rem .875rem">
+      <div><div class="camp-name-d">${c.name}${c.tipo?` <span style="font-size:10px;font-weight:400;color:#888">${c.tipo}</span>`:''}</div>
+      <div class="dates-row">${c.fechaInicio?`<span class="date-chip"><i class="ti ti-flag"></i>${fmtDate(c.fechaInicio)}</span>`:''}${c.fechaDeadline?`<span class="date-chip"><i class="ti ti-target"></i>${fmtDate(c.fechaDeadline)}</span>`:''}${c.fechaFin?`<span class="date-chip"><i class="ti ti-checks"></i>${fmtDate(c.fechaFin)}</span>`:''}</div></div>
+      <button class="btn-danger" onclick="eliminarCampana('${c.id}')"><i class="ti ti-trash"></i></button>
+    </div>`).join(''):'<div class="empty-state">Aun no hay campanas.</div>'}`;
+}
+
+async function crearCampana(){
+  const name=document.getElementById('nc-name').value.trim();
+  if(!name){showToast('Escribe el nombre');return;}
+  const id='c'+Date.now();
+  DB.camps.push({id,name,tipo:document.getElementById('nc-tipo').value.trim(),
+    fechaInicio:document.getElementById('nc-ini').value,
+    fechaDeadline:document.getElementById('nc-dl').value,
+    fechaFin:document.getElementById('nc-fin').value,
+    productos:[],precios:[]});
+  await saveCamps();
+  showToast('Campana "'+name+'" guardada en Drive');
+  activeTab='cfg';campTab['cfg']=id;buildUI();
+}
+
+async function eliminarCampana(cid){
+  const c=DB.camps.find(x=>x.id===cid);if(!c)return;
+  if(!confirm('Eliminar "'+c.name+'"?'))return;
+  DB.camps=DB.camps.filter(x=>x.id!==cid);
+  await saveCamps();buildUI();
+}
+
+function renderFicha(){
+  const el=document.getElementById('view-ficha');if(!el)return;
+  if(!DB.camps.length){el.innerHTML='<div class="empty-state">No hay campanas.</div>';return;}
+  const cid=campTab['ficha']||DB.camps[0].id;
+  const ft=fichaTab[cid]||'productos';
+  let h=`<div class="camp-sel">${DB.camps.map(c=>`<button class="cb${cid===c.id?' on':''}" onclick="selCamp('ficha','${c.id}')">${c.name}</button>`).join('')}</div>`;
+  const camp=DB.camps.find(c=>c.id===cid);if(!camp){el.innerHTML=h;return;}
+  h+=`<div class="camp-name-d" style="margin-bottom:.625rem">${camp.name}</div>`;
+  h+=`<div class="ficha-tabs">
+    <button class="ftb${ft==='productos'?' on':''}" onclick="setFichaTab('${cid}','productos')"><i class="ti ti-link"></i> Productos</button>
+    <button class="ftb${ft==='precios'?' on':''}" onclick="setFichaTab('${cid}','precios')"><i class="ti ti-tag"></i> Precios</button>
+  </div>`;
+  if(ft==='productos'){
+    const prods=camp.productos||[];
+    h+=`<div style="font-size:12px;color:#888;margin-bottom:.75rem">Modelos de esta campana.</div>`;
+    prods.forEach((p,i)=>{
+      h+=`<div class="card" style="padding:.625rem .75rem;margin-bottom:6px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">
+          <span class="camp-name-d" style="font-size:13px">${p.nombre||'Producto '+(i+1)}</span>
+          <button class="btn-danger" onclick="eliminarProducto('${cid}',${i})"><i class="ti ti-trash"></i></button>
+        </div>
+        <div class="field-row" style="margin-bottom:5px">
+          <div><div class="fl">Nombre</div><input class="fi" value="${p.nombre||''}" onchange="updateProducto('${cid}',${i},'nombre',this.value)" placeholder="Ej: Orbea Oiz H20"></div>
+          <div><div class="fl">Precio original</div><input class="fi" value="${p.precioOriginal||''}" onchange="updateProducto('${cid}',${i},'precioOriginal',this.value)" placeholder="Ej: 3.499 EUR"></div>
+        </div>
+        <div><div class="fl">Enlace web</div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <input class="fi" style="flex:1" value="${p.url||''}" onchange="updateProducto('${cid}',${i},'url',this.value)" placeholder="https://www.bikephilosophy.es/es/...">
+            ${p.url?`<a href="${p.url}" target="_blank" class="prod-link"><i class="ti ti-external-link"></i> Ver</a>`:''}
+          </div>
+        </div>
+      </div>`;
+    });
+    h+=`<button class="btn-g" onclick="addProducto('${cid}')"><i class="ti ti-plus"></i> Anadir producto</button>`;
+  }
+  if(ft==='precios'){
+    const precios=camp.precios||[];
+    if(precios.length){
+      const actual=precios[precios.length-1];
+      h+=`<div class="card" style="background:#f5f5f5;margin-bottom:.875rem">
+        <div class="fl">Precio actual</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-top:4px">
+          <span style="font-size:22px;font-weight:500;color:#3B6D11;font-family:'Barlow Condensed',sans-serif">${actual.precio}</span>
+          ${precios.length>1?`<span style="color:#888;text-decoration:line-through;font-size:11px">${precios[precios.length-2].precio}</span>`:''}
+        </div>
+      </div>
+      <div class="card" style="padding:.5rem .75rem">
+        ${[...precios].reverse().map((p,i)=>`<div class="hist-row">
+          <span style="font-size:12px;font-weight:${i===0?'600':'400'};color:${i===0?'#3B6D11':'#111'}">${p.precio}</span>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:10px;color:#888">${fmtDate(p.fecha)}</span>
+            <button class="btn-danger" onclick="eliminarPrecio('${cid}',${precios.length-1-i})"><i class="ti ti-trash"></i></button>
+          </div>
+        </div>`).join('')}
+      </div>`;
+    }
+    h+=`<div class="sec-title" style="margin-top:.875rem">Registrar precio</div>
+    <div class="card">
+      <div class="field-row" style="margin-bottom:6px">
+        <div><div class="fl">Precio</div><input class="fi" id="np-p-${cid}" placeholder="Ej: 2.999 EUR"></div>
+        <div><div class="fl">Fecha</div><input class="fi" type="date" id="np-f-${cid}" value="${new Date().toISOString().split('T')[0]}"></div>
+      </div>
+      <button class="btn-g" onclick="addPrecio('${cid}')"><i class="ti ti-plus"></i> Guardar precio</button>
+    </div>`;
+  }
+  el.innerHTML=h;
+}
+
+function setFichaTab(cid,tab){fichaTab[cid]=tab;buildUI()}
+async function addProducto(cid){const c=DB.camps.find(x=>x.id===cid);if(!c)return;c.productos.push({nombre:'',url:'',precioOriginal:''});await saveCamps();buildUI()}
+async function updateProducto(cid,idx,field,val){const c=DB.camps.find(x=>x.id===cid);if(!c)return;c.productos[idx][field]=val;await saveCamps();}
+async function eliminarProducto(cid,idx){const c=DB.camps.find(x=>x.id===cid);if(!c)return;c.productos.splice(idx,1);await saveCamps();buildUI()}
+async function addPrecio(cid){
+  const precio=document.getElementById('np-p-'+cid)?.value.trim();if(!precio){showToast('Escribe el precio');return;}
+  const c=DB.camps.find(x=>x.id===cid);if(!c)return;
+  c.precios.push({precio,fecha:document.getElementById('np-f-'+cid)?.value||new Date().toISOString().split('T')[0]});
+  await saveCamps();showToast('Precio guardado');buildUI();
+}
+async function eliminarPrecio(cid,idx){const c=DB.camps.find(x=>x.id===cid);if(!c)return;c.precios.splice(idx,1);await saveCamps();buildUI()}
+
+function renderCfg(){
+  const el=document.getElementById('view-cfg');if(!el)return;
+  if(!DB.camps.length){el.innerHTML='<div class="empty-state">No hay campanas.</div>';return;}
+  const cid=campTab['cfg']||DB.camps[0].id;
+  let h=`<div style="font-size:12px;color:#888;margin-bottom:.75rem">Activa las tareas que aplican a cada responsable.</div>
+  <div class="camp-sel">${DB.camps.map(c=>`<button class="cb${cid===c.id?' on':''}" onclick="selCamp('cfg','${c.id}')">${c.name}</button>`).join('')}</div>`;
+  const camp=DB.camps.find(c=>c.id===cid);if(!camp){el.innerHTML=h;return;}
+  h+=`<div class="sec-title">Configurando: ${camp.name}</div>`;
+  Object.keys(TASK_DEF).forEach(r=>{
+    const tasks=TASK_DEF[r];
+    const ac=tasks.filter(t=>isCfgOn(cid,r,t.id)).length;
+    h+=`<div class="resp-block"><div class="resp-hdr"><div class="resp-name">${RL[r]}</div><div style="font-size:11px;color:#888">${ac}/${tasks.length}</div></div>`;
+    tasks.forEach(t=>{
+      const on=isCfgOn(cid,r,t.id);const dl=getDL(cid,r,t.id);
+      h+=`<div class="task-cfg">
+        <button class="toggle ${on?'on':'off'}" onclick="toggleCfg('${cid}','${r}','${t.id}')"></button>
+        <span class="cfg-label${on?'':' dim'}" style="flex:1">${t.label}</span>
+        ${on?`<input type="date" class="date-small" value="${dl}" onchange="updateDL('${cid}','${r}','${t.id}',this.value)">`:''}
+      </div>`;
+    });
+    h+=`</div>`;
+  });
+  el.innerHTML=h;
+}
+
+async function toggleCfg(cid,r,t){
+  DB.cfg[`${cid}|${r}|${t}`]=!isCfgOn(cid,r,t);
+  await saveCfg();buildUI();
+}
+async function updateDL(cid,r,t,val){
+  DB.deadlines[`${cid}|${r}|${t}`]=val;
+  await saveCfg();
+}
+
+function renderResp(resp){
+  const el=document.getElementById('view-'+resp);if(!el)return;
+  if(!DB.camps.length){el.innerHTML='<div class="empty-state">No hay campanas.</div>';return;}
+  const cid=campTab[resp]||DB.camps[0].id;
+  const at=activeTasks(cid,resp);
+  const{pct,done,prog,total}=calcPct(cid,resp);
+  const allDone=total>0&&done===total;
+  let h=`<div class="camp-sel">${DB.camps.map(c=>`<button class="cb${cid===c.id?' on':''}" onclick="selCamp('${resp}','${c.id}')">${c.name}</button>`).join('')}</div>`;
+  if(!total){h+=`<div class="empty-state"><i class="ti ti-checks" style="font-size:24px;display:block;margin-bottom:8px;opacity:.4"></i>Sin tareas asignadas.<br><span style="font-size:11px">Javi las activa desde Configurar.</span></div>`;el.innerHTML=h;return;}
+  const camp=DB.camps.find(c=>c.id===cid);
+  if(camp&&camp.productos&&camp.productos.length){
+    h+=`<div class="card" style="padding:.5rem .75rem;margin-bottom:.75rem;background:#f5f5f5"><div class="sl" style="margin-bottom:5px">Productos</div>`;
+    camp.productos.forEach(p=>{h+=`<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><i class="ti ti-bike" style="font-size:12px;color:var(--g)"></i><span style="font-size:12px;flex:1">${p.nombre||'Sin nombre'}</span>${p.url?`<a href="${p.url}" target="_blank" class="prod-link" style="padding:2px 6px"><i class="ti ti-external-link"></i></a>`:''}</div>`;});
+    const pa=camp.precios&&camp.precios.length?camp.precios[camp.precios.length-1]:null;
+    if(pa)h+=`<div style="margin-top:5px;padding-top:5px;border-top:.5px solid rgba(0,0,0,0.08);font-size:11px"><i class="ti ti-tag"></i> Precio oferta: <span class="precio-actual">${pa.precio}</span></div>`;
+    h+=`</div>`;
+  }
+  h+=`<div class="stat-grid">
+    <div class="sc"><div class="sl">Completadas</div><div class="sv" style="color:#3B6D11">${done}</div><div style="font-size:10px;color:#888">de ${total}</div></div>
+    <div class="sc"><div class="sl">En curso</div><div class="sv" style="color:#854F0B">${prog}</div></div>
+    <div class="sc"><div class="sl">Progreso</div><div class="sv">${pct}%</div><div class="pbar"><div class="pb ${pct===100?'pb-g':'pb-a'}" style="width:${pct}%"></div></div></div>
+  </div>`;
+  h+=`<div class="sec-title">Mis tareas -- ${camp?.name}</div>`;
+  at.forEach(t=>{
+    const d=getTask(cid,resp,t.id);const st=d.state||'pending';
+    const dl=getDL(cid,resp,t.id);
+    const ts=d.ts?new Date(d.ts).toLocaleString('es-ES',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'}):'';
+    const dotc=st==='done'?'dd':st==='progress'?'dr':'dp';
+    h+=`<div class="task-card">
+      <div class="task-top"><div class="sdot ${dotc}"></div>
+        <div class="tlabel">${t.label}${t.hint?`<span class="hint">${t.hint}</span>`:''}${dlTag(dl)}</div>
+      </div>
+      <div class="sbts">
+        <button class="sb sp${st==='pending'?' on':''}" onclick="updateTask('${cid}','${resp}','${t.id}','pending')">Pendiente</button>
+        <button class="sb sr${st==='progress'?' on':''}" onclick="updateTask('${cid}','${resp}','${t.id}','progress')">En curso</button>
+        <button class="sb sd${st==='done'?' on':''}" onclick="updateTask('${cid}','${resp}','${t.id}','done')">Completado</button>
+      </div>
+      <textarea class="tnote" id="note-${cid}-${resp}-${t.id}" rows="1" placeholder="Nota..." oninput="autoH(this)" onblur="saveNote('${cid}','${resp}','${t.id}',this.value)">${d.note||''}</textarea>
+      ${ts?`<div class="tmeta"><i class="ti ti-clock" style="font-size:10px;vertical-align:-1px"></i> ${ts}</div>`:''}
+    </div>`;
+  });
+  h+=`<button class="notify-btn" ${allDone?'':'disabled'} onclick="notifyJavi('${resp}','${cid}')">
+    <i class="ti ti-${allDone?'send':'lock'}"></i>
+    ${allDone?'Notificar a Javi -- todo completado':'Completa todas las tareas para notificar'}
+  </button>`;
+  el.innerHTML=h;
+  el.querySelectorAll('.tnote').forEach(ta=>autoH(ta));
+}
+
+async function updateTask(cid,resp,tid,state){
+  const note=document.getElementById(`note-${cid}-${resp}-${tid}`)?.value||DB.tasks[`${cid}|${resp}|${tid}`]?.note||'';
+  DB.tasks[`${cid}|${resp}|${tid}`]={state,note,ts:new Date().toISOString()};
+  await saveTasks();buildUI();
+}
+
+async function saveNote(cid,resp,tid,note){
+  const existing=DB.tasks[`${cid}|${resp}|${tid}`]||{state:'pending',ts:''};
+  DB.tasks[`${cid}|${resp}|${tid}`]={...existing,note};
+  await saveTasks();
+}
+
+function notifyJavi(resp,cid){
+  const camp=DB.camps.find(c=>c.id===cid);
+  showToast('Javi notificado -- '+RL[resp]+' completo '+camp.name);
+  alert('AVISO: '+RL[resp]+' ha completado todas sus tareas de "'+camp.name+'".\n'+new Date().toLocaleString('es-ES'));
+}
+function selCamp(tab,cid){campTab[tab]=cid;buildUI()}
+function autoH(ta){ta.style.height='auto';ta.style.height=ta.scrollHeight+'px'}
+
+loadAll();
+setInterval(loadAll, 30000);
+</script>
+
+
+</body></html>
